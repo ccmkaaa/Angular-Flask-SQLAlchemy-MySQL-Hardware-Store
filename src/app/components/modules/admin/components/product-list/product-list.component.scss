@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      color: white; 
+    }
+  
+    th {
+      background-color: #573ec5;
+    }
+  
+    tr:hover {
+      background-color: #03030333;
+    }
+  
+    button {
+      padding: 4px 8px;
+      background-color: #007bff;
+      color: #fff; 
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #b300b39c;
+      }
+    }
+  }
