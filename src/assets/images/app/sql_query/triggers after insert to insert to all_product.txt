@@ -1,0 +1,82 @@
+DELIMITER //
+CREATE TRIGGER after_insert_gpu
+AFTER INSERT ON gpu
+FOR EACH ROW
+BEGIN
+  DECLARE duplicate_check INT;
+
+  SELECT COUNT(*)
+  INTO duplicate_check
+  FROM all_product
+  WHERE id = NEW.id;
+
+  IF duplicate_check = 0 THEN
+    INSERT INTO all_product (id, name, pic, product_type)
+    VALUES (NEW.id, NEW.name, NULL, 'gpu');
+  END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER after_insert_cpu
+AFTER INSERT ON cpu
+FOR EACH ROW
+BEGIN
+  DECLARE duplicate_check INT;
+
+  SELECT COUNT(*)
+  INTO duplicate_check
+  FROM all_product
+  WHERE id = NEW.id;
+
+  IF duplicate_check = 0 THEN
+    INSERT INTO all_product (id, name, pic, product_type)
+    VALUES (NEW.id, NEW.name, NULL, 'cpu');
+  END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER after_insert_ram
+AFTER INSERT ON ram
+FOR EACH ROW
+BEGIN
+  DECLARE duplicate_check INT;
+
+  SELECT COUNT(*)
+  INTO duplicate_check
+  FROM all_product
+  WHERE id = NEW.id;
+
+  IF duplicate_check = 0 THEN
+    INSERT INTO all_product (id, name, pic, product_type)
+    VALUES (NEW.id, NEW.name, NULL, 'ram');
+  END IF;
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE TRIGGER after_insert_mb
+AFTER INSERT ON mb
+FOR EACH ROW
+BEGIN
+  DECLARE duplicate_check INT;
+
+  SELECT COUNT(*)
+  INTO duplicate_check
+  FROM all_product
+  WHERE id = NEW.id;
+
+  IF duplicate_check = 0 THEN
+    INSERT INTO all_product (id, name, pic, product_type)
+    VALUES (NEW.id, NEW.name, NULL, 'mb');
+  END IF;
+END;
+//
+DELIMITER ;

@@ -1,0 +1,35 @@
+INSERT INTO all_product (id, name, pic)
+SELECT g.id, g.name, NULL AS pic
+FROM gpu g
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM all_product ap
+    WHERE ap.id = g.id
+);
+
+INSERT INTO all_product (id, name, pic)
+SELECT c.id, c.name, NULL AS pic
+FROM cpu c
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM all_product ap
+    WHERE ap.id = c.id
+);
+
+INSERT INTO all_product (id, name, pic)
+SELECT r.id, r.name, NULL AS pic
+FROM ram r
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM all_product ap
+    WHERE ap.id = r.id
+);
+
+INSERT INTO all_product (id, name, pic)
+SELECT m.id, m.name, NULL AS pic
+FROM mb m
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM all_product ap
+    WHERE ap.id = m.id
+);

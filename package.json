@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:angular": "ng serve",
-    "start:flask": "cd Server_Flask && myenv\\Scripts\\activate && python app.py",
+    "start:flask": "cd Server_Flask && python app.py",  
     "start:both": "concurrently \"npm run start:angular\" \"npm run start:flask\""
   },
   "private": true,

@@ -1,0 +1,134 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(87, 62, 197, 0.7);
+  border: 1px solid white;
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: white; 
+    background: rgba(255, 255, 255, 0.11);
+    position: relative;
+  }
+
+  th {
+    background-color: #573ec5;
+  }
+
+  tr:hover {
+    background-color: #03030333;
+  }
+
+  td::before, th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1px;
+    height: 100%;
+    width: 1px;
+    background-color: #ffffff9c; /* Цвет границы */
+  }
+
+  td::after, th::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #ffffff9c; /* Цвет границы */
+  }
+
+  button {
+    padding: 4px 8px;
+    background-color: rgb(63, 0, 145);
+    color: #fff; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #b300b39c;
+    }
+  }
+}
+
+.table-container {
+  position: relative;
+  max-height: 500px; 
+  overflow-y: auto; 
+  ::before, ::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: white; /* Цвет границы */
+  }
+
+  ::before {
+    top: 0;
+  }
+
+  ::after {
+    bottom: 0;
+  }
+  ::before {
+    display: none;
+  }
+  ::after {
+    display: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+button {
+  height: 30px;
+  width: 100px;
+  background-color: rgb(63, 0, 145);
+  color: #fff; 
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: rgba(250, 1, 250, 0.612);
+  }
+}
+
+.button-container {
+  margin: 15px 30px;
+  display: inline-block; /* чтобы контейнер занимал только необходимое пространство вокруг кнопки */
+  padding: 0px; /* отступы */
+  border: 2px solid #ffffff; /* цвет границы */
+  border-radius: 8px; /* скругление углов */
+  background-color: #4c87af; /* цвет фона */
+  color: white; /* цвет текста (белый) */
+}
+
+.button-container:hover {
+  border-color: #ffffff; /* цвет границы при наведении */
+  background-color: rgba(0, 17, 255, 0.521);
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #ffffff; /* Цвет полосы */
+}

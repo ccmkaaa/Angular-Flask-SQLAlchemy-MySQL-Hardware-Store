@@ -1,0 +1,11 @@
+      
+<td>{{ product.id }}</td>
+<td>{{ product.name }}</td>
+<td>{{ product.quantity }}</td>
+<td>{{ product.price }}</td>
+<td>{{ product.quantity * product.price }}</td>
+<td>
+  <button (click)="onAddProduct(product)">Добавить</button>
+  <button (click)="onRemoveProduct(product)">Удалить</button>
+</td>
+  

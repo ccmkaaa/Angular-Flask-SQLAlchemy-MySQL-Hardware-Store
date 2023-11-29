@@ -7,7 +7,9 @@ import { HomeComponent } from './components/home/home.component';
 import { UserResolver } from './resolvers/user.resolver';
 import { UsersResolver } from './resolvers/users.resolver';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductsComponent } from './components/products/products.component';
 import { ProductsResolver } from './resolvers/products.resolver';
+import { ProductTypeResolver } from './resolvers/product-type.resolver';
 
 const routes: Routes = [
   {path:'', component: AdminDashboardComponent,
@@ -20,6 +22,9 @@ const routes: Routes = [
       }},
       {path: 'product-list', component: ProductListComponent, resolve: {
         products: ProductsResolver
+      }},
+      {path: 'products', component: ProductsComponent, resolve: {
+        product_types: ProductTypeResolver
       }},
       {path: 'contacts/user', redirectTo: 'contacts', pathMatch: 'full'},
       {path: 'home', component: HomeComponent},

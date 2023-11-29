@@ -1,0 +1,47 @@
+<div class="line mt-3"></div>
+<div *ngIf="columns.length > 0 && products.length > 0" class="table-container">
+
+  <table class="table" style="margin-top: 10px;">
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">{{ column }}</th>
+        <th>Delete Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | searchFilter: selectedSearch">
+        <td *ngFor="let column of columns">{{ product[column] }}</td>
+        <td>
+          <button (click)="deleteProduct(product)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div *ngIf="columns.length > 0 && products.length > 0" class="add-product-form">
+  <form (submit)="addProduct()">
+    <div *ngFor="let column of columns">
+      <ng-container *ngIf="column === 'name' || column.startsWith('id_')">
+        <label>{{ column }}</label>
+        <ng-container *ngIf="column === 'name'; else selectField">
+          <input [(ngModel)]="newProduct[column]" name="{{ column }}" required>
+        </ng-container>
+        <ng-template #selectField>
+          <select [(ngModel)]="newProduct[column]" name="{{ column }}" required>
+            <option *ngFor="let option of idOptions[column.toLowerCase()]" [value]="option.id">{{ option.name }}</option>
+          </select>
+        </ng-template>
+      </ng-container>
+    </div>
+    <div class="additional-fields">
+      <label>Image</label>
+      <input type="file" (change)="onImageChange($event)" accept=".jpg" required>
+      <label>Price</label>
+      <input type="number" (keypress)="onKeyPress($event)" [(ngModel)]="price.price" name="price" required>
+    </div>
+    <button type="submit">Add Product</button>
+  </form>
+</div>
+

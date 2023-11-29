@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, filter, mapTo, map, merge } from 'rxjs';
 import { Product } from '../../product';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common'
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AdminService } from '../../services/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ListComponent } from './list/list.component';
+import { ProductComponent } from './product/product.component';
+import { FormAddNewProductComponent } from './formAddNewProduct/formaddnewproduct.component';
+
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductListComponent implements OnInit {
 
@@ -51,9 +58,24 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  AddNewProduct(newProduct: Product) {
+    // Обновление productList (пример)
+    this.productList = this.productList.pipe(
+      map((products) => [...products, newProduct])
+    );
+
+    // Вызов сервиса для отправки данных на сервер Flask (пример)
+    this.adminService.addProduct(newProduct).subscribe(
+      (response) => {
+          this.openSnackBar('Товар успешно добавлен', 'OK');
+      },
+      (error) => {
+          this.openSnackBar('Произошла ошибка', 'Закрыть');
+      }
+    );
+  }
+
   ngOnInit(): void {
       this.productList = this.activatedRoute.data.pipe(map((data) => data?.['products']))
   }
-
-  
 }

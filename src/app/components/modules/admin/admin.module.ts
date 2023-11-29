@@ -10,6 +10,15 @@ import { ContactsDetailsComponent } from './components/contacts-details/contacts
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { FormsModule }   from '@angular/forms';
+import { ListComponent } from './components/product-list/list/list.component';
+import { ProductComponent } from './components/product-list/product/product.component';
+import { FormAddNewProductComponent } from './components/product-list/formAddNewProduct/formaddnewproduct.component';
+import { ProductsComponent } from './components/products/products.component';
+import { SearchFilterPipe } from './pipe/search-filter.pipe';
+import { ShowComponent } from './components/products/show/show.component';
+import { EditComponent } from './components/products/edit/edit.component';
+import { DynamicComponentDirective } from './directives/dynamic-component.directive';
+import { PriceFormatPipe } from './pipe/price-format.pipe';
 
 
 @NgModule({
@@ -22,6 +31,15 @@ import { FormsModule }   from '@angular/forms';
     ContactsDetailsComponent,
     AdminDashboardComponent,
     ProductListComponent,
+    ListComponent,
+    ProductComponent,
+    FormAddNewProductComponent,
+    ProductsComponent,
+    SearchFilterPipe,
+    ShowComponent,
+    EditComponent,
+    DynamicComponentDirective,
+    PriceFormatPipe,
   ],
   imports: [
     CommonModule,

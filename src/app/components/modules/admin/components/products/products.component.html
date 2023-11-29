@@ -1,0 +1,36 @@
+<div class="form-row">
+
+  <div class="form-group mx-3" style="margin-top: 10px;">
+  <label for="tableType">Select Product Type: </label>
+  <select [(ngModel)]="selectedProductType" (change)="onTypeSelect()">
+    <option *ngFor="let productType of productTypes | async" [value]="productType">
+      {{ productType }}
+    </option>
+  </select>
+  </div>
+
+  <div class="form-group mx-3" style="margin-top: 10px;">
+  <label for="tableType">Select Table Type: </label>
+    <select [(ngModel)]="selectedTableType" (change)="onTypeSelect()">
+      <option value="edit">Edit Table</option>
+      <option value="show">Show Table</option>
+    </select>
+  </div>
+
+  <div class="form-group mx-3" style="width: 20%; margin-top: 10px;">
+    <input type="text" class="form-control" id="search" placeholder="Enter search text" [(ngModel)]="selectedSearch">
+  </div>
+
+</div>
+
+
+<div *ngIf="selectedTableType === 'show'">
+  <app-show [columns]="columns" [products]="products" [selectedSearch]="selectedSearch"></app-show>
+</div>
+
+<div *ngIf="selectedTableType === 'edit' && selectedProductType != null">
+  <app-edit [columns]="columns" [products]="products" [selectedSearch]="selectedSearch" [idOptions]="idOptions" [selectedTable]="selectedProductType"></app-edit>
+</div>
+
+
+  

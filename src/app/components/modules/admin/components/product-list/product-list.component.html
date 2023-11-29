@@ -1,4 +1,4 @@
-<table>
+<!-- <table>
     <thead>
       <tr>
         <th>Id Товара</th>
@@ -38,4 +38,7 @@
   <input type="number" id="newProductPrice" name="newProductPrice" [(ngModel)]="newProduct.price" required>
 
   <button type="submit">Добавить товар</button>
-</form>
+</form> -->
+<app-list [productList]="productList"></app-list>
+<app-form-add-new-product [newProduct]="newProduct" (AddNewProduct)="AddNewProduct($event)"></app-form-add-new-product>
+

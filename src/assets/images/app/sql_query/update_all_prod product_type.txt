@@ -1,0 +1,9 @@
+UPDATE all_product
+SET product_type = 
+    CASE
+        WHEN id IN (SELECT id FROM gpu) THEN 'gpu'
+        WHEN id IN (SELECT id FROM cpu) THEN 'cpu'
+        WHEN id IN (SELECT id FROM ram) THEN 'ram'
+        WHEN id IN (SELECT id FROM mb) THEN 'mb'
+        ELSE 'unknown'
+    END;

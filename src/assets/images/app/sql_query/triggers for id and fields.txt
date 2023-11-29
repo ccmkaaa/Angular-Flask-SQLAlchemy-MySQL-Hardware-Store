@@ -1,0 +1,114 @@
+BEGIN
+  DECLARE max_id INT;
+
+  -- Находим максимальное значение id среди таблиц gpu, cpu, mb и ram
+  SELECT MAX(id) INTO max_id FROM (
+    SELECT id FROM gpu
+    UNION
+    SELECT id FROM cpu
+    UNION
+    SELECT id FROM mb
+    UNION
+    SELECT id FROM ram
+  ) AS all_ids;
+
+  -- Устанавливаем новое значение id для текущей вставки
+  SET NEW.id = IFNULL(max_id, 0) + 1;
+  
+    SELECT brand INTO @brand FROM gpu_brand WHERE gpu_brand.id = NEW.id_brand;
+    SELECT distributor INTO @distributor FROM gpu_distributor WHERE gpu_distributor.id = NEW.id_distributor;
+    SELECT memory_size INTO @memory_size FROM gpu_memory WHERE gpu_memory.id = NEW.id_memory_size;
+    SELECT coolers INTO @coolers FROM gpu_coolers WHERE gpu_coolers.id = NEW.id_coolers;
+
+    -- Устанавливаем значения для новой записи
+    SET NEW.brand = @brand;
+    SET NEW.distributor = @distributor;
+    SET NEW.memory_size = @memory_size;
+    SET NEW.coolers = @coolers;
+END
+
+BEGIN
+  DECLARE max_id INT;
+
+  -- Находим максимальное значение id среди таблиц gpu, cpu, mb и ram
+  SELECT MAX(id) INTO max_id FROM (
+    SELECT id FROM gpu
+    UNION
+    SELECT id FROM cpu
+    UNION
+    SELECT id FROM mb
+    UNION
+    SELECT id FROM ram
+  ) AS all_ids;
+
+  -- Устанавливаем новое значение id для текущей вставки
+  SET NEW.id = IFNULL(max_id, 0) + 1;
+  
+    SELECT brand INTO @brand FROM cpu_brand WHERE cpu_brand.id = NEW.id_brand;
+    SELECT cores INTO @cores FROM cpu_cores WHERE cpu_cores.id = NEW.id_cores;
+
+    -- Устанавливаем значения для новой записи
+    SET NEW.brand = @brand;
+    SET NEW.cores = @cores;
+
+END
+
+
+BEGIN
+  DECLARE max_id INT;
+
+  -- Находим максимальное значение id среди таблиц gpu, cpu, mb и ram
+  SELECT MAX(id) INTO max_id FROM (
+    SELECT id FROM gpu
+    UNION
+    SELECT id FROM cpu
+    UNION
+    SELECT id FROM mb
+    UNION
+    SELECT id FROM ram
+  ) AS all_ids;
+
+  -- Устанавливаем новое значение id для текущей вставки
+  SET NEW.id = IFNULL(max_id, 0) + 1;
+  
+  SELECT brand INTO @brand FROM ram_brand WHERE ram_brand.id = NEW.id_brand;
+  SELECT memory_type INTO @memory_type FROM ram_memory_type WHERE ram_memory_type.id = NEW.id_memory_type;
+  SELECT capacity INTO @capacity FROM ram_capacity WHERE ram_capacity.id = NEW.id_capacity;
+  SELECT frequency INTO @frequency FROM ram_frequency WHERE ram_frequency.id = NEW.id_frequency;
+
+    -- Устанавливаем значения для новой записи
+    SET NEW.brand = @brand;
+    SET NEW.memory_type = @memory_type;
+    SET NEW.capacity = @capacity;
+    SET NEW.frequency = @frequency;
+END
+
+
+BEGIN
+  DECLARE max_id INT;
+
+  -- Находим максимальное значение id среди таблиц gpu, cpu, mb и ram
+  SELECT MAX(id) INTO max_id FROM (
+    SELECT id FROM gpu
+    UNION
+    SELECT id FROM cpu
+    UNION
+    SELECT id FROM mb
+    UNION
+    SELECT id FROM ram
+  ) AS all_ids;
+
+  -- Устанавливаем новое значение id для текущей вставки
+  SET NEW.id = IFNULL(max_id, 0) + 1;
+  
+  
+    SELECT format INTO @format FROM mb_format WHERE mb_format.id = NEW.id_format;
+    SELECT socket INTO @socket FROM mb_socket WHERE mb_socket.id = NEW.id_socket;
+    SELECT wi_fi INTO @wi_fi FROM mb_wi_fi WHERE mb_wi_fi.id = NEW.id_wi_fi;
+    
+
+    -- Устанавливаем значения для новой записи
+    SET NEW.format = @format;
+    SET NEW.socket = @socket;
+    SET NEW.wi_fi = @wi_fi;
+END

@@ -1,0 +1,37 @@
+<div class="line mt-3"></div>
+<div *ngIf="columns.length > 0 && products.length > 0" class="table-container">
+  <table class="table" style="margin-top: 10px;">
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">{{ column }}</th>
+        <th>Total Amount</th>
+        <th>Increase</th>
+        <th>Decrease</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | searchFilter: selectedSearch; let i = index">
+        <ng-container *ngFor="let column of columns; let j = index">
+          <ng-container *ngIf="column !== 'price' && column !== 'quantity'; else inputColumn">
+            <td>{{ product[column] }}</td>
+          </ng-container>
+          <ng-template #inputColumn>
+            <td>
+              <input *ngIf="isEditable(column)" type="number" [(ngModel)]="product[column]"
+                pattern="[0-9]*" inputmode="numeric" min="0" (keypress)="onKeyPress($event)">
+            </td>
+          </ng-template>
+        </ng-container>
+
+        <td>{{ getTotalAmount(product) | priceFormat }}</td>
+        <td><button (click)="increaseQuantity(product)">Increase</button></td>
+        <td><button (click)="decreaseQuantity(product)">Decrease</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="line"></div>
+<div class="button-container">
+  <button (click)="saveProduct()">Save</button>
+</div>
+

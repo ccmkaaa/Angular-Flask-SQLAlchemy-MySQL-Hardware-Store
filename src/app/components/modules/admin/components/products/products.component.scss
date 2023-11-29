@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(87, 62, 197, 0.7);
+    border: 1px solid white;
+  
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      color: white; 
+      background: rgba(255, 255, 255, 0.11);
+    }
+  
+    th {
+      background-color: #573ec5;
+    }
+  
+    tr:hover {
+      background-color: #03030333;
+    }
+  
+    button {
+      padding: 4px 8px;
+      background-color: #007bff;
+      color: #fff; 
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #b300b39c;
+      }
+    }
+  }
+
+  button {
+    padding: 4px 8px;
+    background-color: #007bff;
+    color: #fff; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #b300b39c;
+    }
+  }
+
+  tr {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+
+  .form-row {
+    display: flex; /* Используем flexbox для расположения элементов в одну строку */
+    justify-content: flex-start; /* Распределяем пространство между элементами */
+    align-items: center;
+  }
+
+  .form-group label {
+    color: white;
+  }

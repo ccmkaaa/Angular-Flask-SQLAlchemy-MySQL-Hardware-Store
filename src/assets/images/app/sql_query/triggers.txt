@@ -1,0 +1,33 @@
+UPDATE gpu
+JOIN gpu_brand ON gpu.id_brand = gpu_brand.id
+JOIN gpu_distributor ON gpu.id_distributor = gpu_distributor.id
+JOIN gpu_memory ON gpu.id_memory_size = gpu_memory.id
+JOIN gpu_coolers ON gpu.id_coolers = gpu_coolers.id
+SET
+  gpu.brand = gpu_brand.brand,
+  gpu.distributor = gpu_distributor.distributor,
+  gpu.memory_size = gpu_memory.memory_size,
+  gpu.coolers = gpu_coolers.coolers;
+  
+ UPDATE cpu JOIN cpu_brand ON cpu.id_brand = cpu_brand.id JOIN cpu_cores ON cpu.id_cores = cpu_cores.id SET cpu.brand = cpu_brand.brand, cpu.cores = cpu_cores.cores;
+ 
+ UPDATE ram
+JOIN ram_brand ON ram.id_brand = ram_brand.id
+JOIN ram_memory_type ON ram.id_memory_type = ram_memory_type.id
+JOIN ram_capacity ON ram.id_capacity = ram_capacity.id
+JOIN ram_frequency ON ram.id_frequency = ram_frequency.id
+SET
+  ram.brand = ram_brand.brand,
+  ram.memory_type = ram_memory_type.memory_type,
+  ram.capacity = ram_capacity.capacity,
+  ram.frequency = ram_frequency.frequency;
+  
+  
+  UPDATE mb
+JOIN mb_format ON mb.id_format = mb_format.id
+JOIN mb_socket ON mb.id_socket = mb_socket.id
+JOIN mb_wi_fi ON mb.id_wi_fi = mb_wi_fi.id
+SET
+  mb.format = mb_format.format,
+  mb.socket = mb_socket.socket,
+  mb.wi_fi = mb_wi_fi.wi_fi
