@@ -4,6 +4,7 @@
 @import 'bootstrap/scss/bootstrap';
 
 .gradient-custom{
+    position: relative;
     background: #6a11cb;
     background: -webkit-linear-gradient(
         to right,
@@ -12,13 +13,35 @@
     );
     background: linear-gradient(
         to right,
-        rgba(106, 17, 203, 1),
-        rgba(37, 117, 252, 1)
+        rgb(134, 36, 240),
+        rgb(31, 94, 204)
     );
+
+    ::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        background: #6a11cb;
+        background: -webkit-linear-gradient(
+            to right,
+            rgba(106, 17, 203, 1),
+            rgba(37, 117, 252, 1)
+        );
+        background: linear-gradient(
+            to right,
+            rgb(134, 36, 240),
+            rgb(31, 94, 204)
+        );
+    }
 }
 
 .text-info:hover {
     background: rgba(118, 150, 155, 0.18);
+    border-radius: 5px;
 }
 
 .text-info.active {

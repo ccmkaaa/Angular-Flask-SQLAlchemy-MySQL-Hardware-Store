@@ -132,29 +132,3 @@ def filter_columns(columns):
     # Фильтруем столбцы, оставляя только те, которые начинаются с "id_" и не являются "id" или "name"
     filtered_columns = [column for column in columns if column.startswith("id_")]
     return filtered_columns
-
-
-# @products_bp.route("/get_product_table", methods=["POST"])
-# @cross_origin()
-# def get_product_table():
-#     data = request.json
-#     table_type = data.get("selectedTableType", "edit")
-#     table_name = data.get("selectedProductType", "")
-
-#     cursor = db.cursor()
-#     try:
-#         cats = get_category_columns(table_name)
-#         query = f"""
-#             SELECT all_product.id, all_product.name, all_product.price, all_product.quantity, {cats}
-#             FROM {table_name}
-#             JOIN all_product ON {table_name}.id = all_product.id;
-#             """
-#         cursor.execute(query)
-#         result = cursor.fetchall()
-#         return jsonify(result)
-
-#     except mysql.connector.Error as err:
-#         print(f"Error: {err}")
-#         abort(500, description=f"Database error: {err}")
-#     finally:
-#         cursor.close()

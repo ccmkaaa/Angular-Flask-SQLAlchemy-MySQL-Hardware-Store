@@ -24,6 +24,8 @@ export class AdminService {
     return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${id}`);
   }
 
+  // delete in future
+
   getProductList() {
     return this.http.get<Product[]>(this.productsUrl);
   }

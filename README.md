@@ -26,6 +26,31 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## Packages u'll needed: (via pip install)
+
+`SQLAlchemy 2.0.23`
+`mysql-connector-python 8.2.0`
+`Flask 3.0.0`
+`Flask-Cors 4.0.0`
+`Flask-RESTful 0.3.10`
+`Flask-SQLAlchemy 3.1.1`
+
+## Also u need 'npm concurrently'
+
+`npm install concurrently`
+
+# Start flask & angular
+
+`npm run start:both`
+
+# From package json
+
+"start:angular": "ng serve",
+"start:flask": "cd Server_Flask && python app.py",  
+"start:both": "concurrently \"npm run start:angular\" \"npm run start:flask\""
+
+# Tree of project
+
 ```
 First_App
 ├─ .angular

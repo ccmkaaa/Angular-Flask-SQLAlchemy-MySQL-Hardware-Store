@@ -12,6 +12,6 @@
     <tbody>
         <tr *ngFor="let product of productList | async">
           <app-product [product]="product" (addProduct)="onAddProduct(product)" (removeProduct)="onRemoveProduct(product)"></app-product>
-        </tr>
+        </tr> 
     </tbody>
   </table>
