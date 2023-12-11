@@ -17,8 +17,10 @@
           </ng-container>
           <ng-template #inputColumn>
             <td>
-              <input *ngIf="isEditable(column)" type="number" [(ngModel)]="product[column]"
+              <div class="input-group mb-3">
+              <input class="form-control back-input" *ngIf="isEditable(column)" type="number" [(ngModel)]="product[column]"
                 pattern="[0-9]*" inputmode="numeric" min="0" (keypress)="onKeyPress($event)">
+              </div>
             </td>
           </ng-template>
         </ng-container>

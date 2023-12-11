@@ -54,11 +54,26 @@ table {
 
 
   .form-row {
+    min-height: 80px;
     display: flex; /* Используем flexbox для расположения элементов в одну строку */
+    flex-direction: row;
+    justify-content: flex-start; /* Распределяем пространство между элементами */
+    align-items: center;
+    background: #b300b32c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .form-group {
+    display: flex; /* Используем flexbox для расположения элементов в одну строку */
+    flex-direction: row;
     justify-content: flex-start; /* Распределяем пространство между элементами */
     align-items: center;
   }
 
   .form-group label {
     color: white;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    padding-right: 5px;
   }

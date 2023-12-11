@@ -13,6 +13,10 @@ table {
     position: relative;
   }
 
+  td {
+    max-height: 30px;
+  }
+
   th {
     background-color: #573ec5;
   }
@@ -131,4 +135,9 @@ button {
   height: 1px;
   width: 100%;
   background-color: #ffffff; /* Цвет полосы */
+}
+
+.back-input {
+  background: rgba(0, 0, 0, 0.158);
+  color: white;
 }

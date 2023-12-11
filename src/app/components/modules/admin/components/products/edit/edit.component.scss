@@ -51,7 +51,6 @@ table {
       border-radius: 3px;
   
       &:hover {
-        border: 1px solid white;
         background-color: #b300b39c;
       }
     }
@@ -138,4 +137,9 @@ table {
         }
       }
     }
+  }
+
+  .back-input {
+    background: rgba(0, 0, 0, 0.158);
+    color: white;
   }
