@@ -141,3 +141,9 @@ button {
   background: rgba(0, 0, 0, 0.158);
   color: white;
 }
+
+.description-column {
+  max-width: 200px; /* Максимальная ширина столбца */
+  max-height: 100px; /* Максимальная высота столбца */
+  overflow: auto; /* Добавляет полосы прокрутки при необходимости */
+}

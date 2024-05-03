@@ -1,4 +1,3 @@
-export interface ProductType
-{
+export interface ProductType {
     product_type: string;
 }

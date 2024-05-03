@@ -18,7 +18,6 @@ import { EditComponent } from './edit/edit.component';
 
 
 export class ProductsComponent implements OnInit {
-  @ViewChild(DynamicComponentDirective, { static: true }) dynamicComponent!: DynamicComponentDirective;
 
   productTypes!: Observable<ProductType[]>
 

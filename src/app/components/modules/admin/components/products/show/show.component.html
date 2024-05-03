@@ -12,17 +12,25 @@
     <tbody>
       <tr *ngFor="let product of products | searchFilter: selectedSearch; let i = index">
         <ng-container *ngFor="let column of columns; let j = index">
-          <ng-container *ngIf="column !== 'price' && column !== 'quantity'; else inputColumn">
+          <ng-container *ngIf="column !== 'price' && column !== 'quantity' && column !== 'description'; else inputColumn">
             <td>{{ product[column] }}</td>
           </ng-container>
+          
           <ng-template #inputColumn>
-            <td>
+            <td *ngIf="column !== 'description'">
               <div class="input-group mb-3">
-              <input class="form-control back-input" *ngIf="isEditable(column)" type="number" [(ngModel)]="product[column]"
-                pattern="[0-9]*" inputmode="numeric" min="0" (keypress)="onKeyPress($event)">
+                <input class="form-control back-input" *ngIf="isEditable(column)" type="number" [(ngModel)]="product[column]"
+                  pattern="[0-9]*" inputmode="numeric" min="0" (keypress)="onKeyPress($event)">
+              </div>
+            </td>
+            
+            <td *ngIf="column === 'description'">
+              <div class="input-group mb-3">
+                <input class="form-control description-input" *ngIf="isEditable(column)" type="text" [(ngModel)]="product[column]" name="description">
               </div>
             </td>
           </ng-template>
+
         </ng-container>
 
         <td>{{ getTotalAmount(product) | priceFormat }}</td>

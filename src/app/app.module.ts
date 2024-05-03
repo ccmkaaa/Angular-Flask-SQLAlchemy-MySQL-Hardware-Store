@@ -10,6 +10,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppComponent,
     LoginComponent,
     NotFoundComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonModule,
+    CommonModule,
+    BrowserAnimationsModule
   ],
   providers: [
   ],

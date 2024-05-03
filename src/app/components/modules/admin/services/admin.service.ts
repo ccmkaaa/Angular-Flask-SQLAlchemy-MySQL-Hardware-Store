@@ -12,8 +12,6 @@ export class AdminService {
 
   private apiUrl = 'http://localhost:5000';
 
-  private productsUrl = '/assets/products.json';
-
   constructor(private http: HttpClient) { }
 
   getPersonalList() {
@@ -22,12 +20,6 @@ export class AdminService {
 
   getPerson(id: number) {
     return this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${id}`);
-  }
-
-  // delete in future
-
-  getProductList() {
-    return this.http.get<Product[]>(this.productsUrl);
   }
 
   addProduct(productData: any) {
@@ -67,7 +59,7 @@ export class AdminService {
     return this.http.post<any>(`${this.apiUrl}/add_edit_product`, {selectedTable, newProduct});
   }
 
-  setEditProduct(newProductId: number, imageFile: File | null, price: number, selectedTable: string): Observable<any> {
+  setEditProduct(newProductId: number, imageFile: File | null, price: number, description: string, selectedTable: string): Observable<any> {
     const formData = new FormData();
     formData.append('newProductId', newProductId.toString());
     formData.append('selectedTable', selectedTable);
@@ -77,6 +69,7 @@ export class AdminService {
     }
 
     formData.append('price', price.toString());
+    formData.append('description', description);
 
     return this.http.post<any>(`${this.apiUrl}/set_edit_product`, formData);
   }

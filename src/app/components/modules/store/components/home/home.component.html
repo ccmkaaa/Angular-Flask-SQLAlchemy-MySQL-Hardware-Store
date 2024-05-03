@@ -1,0 +1,84 @@
+<!-- <button (click)="parseCategories(getSelectedCategories(this.categories))">Log Selected Categories</button> -->
+<!-- <div class="container">
+    <div class="sidebar">
+      <input type="text" class="search-bar" [(ngModel)]="searchTerm">
+      <h2>Product Types</h2>
+    <ul class="product-type-list">
+    <li *ngFor="let productType of productTypes">
+        <input type="checkbox" [(ngModel)]="isProductTypeSelected[productType.id]">  {{ productType.name }}  </li>
+    </ul>
+    <h2>Categories</h2>
+    <ul class="category-list">
+        <li *ngFor="let category of categories">
+            {{ category.category }}
+            <ul #subcategoryList *ngIf="category.subcategories">
+            <li *ngFor="let subcategoryName of category.subcategories | keyvalue">
+                {{ subcategoryName.value.name }}
+                <ul>
+                <li *ngFor="let value of subcategoryName.value.values">
+                    <input type="checkbox" [(ngModel)]="selectedValues[getCombinedValueId(category.category, subcategoryName.key, value.id)]" (change)="onValueChange($event)">
+                    {{ value.name }}
+                </li>
+                </ul>
+            </li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    <div class="main-content">
+      <h2>Products</h2>
+      <div class="product-card" *ngFor="let product of filteredProducts">
+        <img [src]="product.imageUrl" alt="{{ product.name }}">
+        <h4>{{ product.name }}</h4>
+        <p>{{ product.description }}</p>
+        <span>{{ product.price }}</span>
+      </div>
+    </div>
+  </div> -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        <div class="cats">
+            <h2>Product Types</h2>
+            <ul class="product-type-list">
+            <li *ngFor="let productType of productTypes">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="isProductTypeSelected[productType.id]">
+                    <label class="form-check-label">{{ productType.name }}</label>
+                </div>
+            </li>
+            </ul>
+            <h2>Categories</h2>
+            <ul class="category-list">
+            <li *ngFor="let category of categories">
+                {{ category.category }}
+                <ul #subcategoryList *ngIf="category.subcategories">
+                <li *ngFor="let subcategoryName of category.subcategories | keyvalue">
+                    {{ subcategoryName.value.name }}
+                    <ul>
+                    <li *ngFor="let value of subcategoryName.value.values">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="selectedValues[getCombinedValueId(category.category, subcategoryName.key, value.id)]" (change)="onValueChange($event)">
+                            <label class="form-check-label">{{ value.name }}</label>
+                        </div>
+                    </li>
+                    </ul>
+                </li>
+                </ul>
+            </li>
+            </ul>
+        </div>
+      </div>
+      <div class="col-md-9 main-content">
+        <h2>Products</h2>
+        <div class="row">
+          <div class="col-md-4 product-card" *ngFor="let product of products">
+            <img [src]="product.imageUrl" alt="{{ product.name }}" class="img-fluid">
+            <h4>{{ product.name }}</h4>
+            <span>{{ product.price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

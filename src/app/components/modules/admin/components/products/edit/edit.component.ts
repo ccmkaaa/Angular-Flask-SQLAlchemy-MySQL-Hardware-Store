@@ -22,6 +22,7 @@ export class EditComponent {
 
   imageFile: File | null = null;
   price: { price: number } = { price: 0 };
+  description: { description: string } = {description: ""}
 
   constructor(private adminService: AdminService) {}
 
@@ -35,10 +36,11 @@ export class EditComponent {
           this.newProduct = {};
 
           const newProductId = response.createdRecord.id;
-          this.adminService.setEditProduct(newProductId, this.imageFile, this.price.price, this.selectedTable).subscribe(
+          this.adminService.setEditProduct(newProductId, this.imageFile, this.price.price, this.description.description, this.selectedTable).subscribe(
             (data) => {
               this.imageFile = null;
               this.price = { price: 0 };
+              this.description = { description: ""}
               alert('Product Added')
             },
             (data) => {
@@ -51,7 +53,7 @@ export class EditComponent {
         }
       );
     } else {
-      alert('Please fill in all required fields: ' + missingFields.join(', ') + ' (also pic the file and price)');
+      alert('Please fill in all required fields: ' + missingFields.join(', ') + ' (also pic the file, price and description)');
     }
   }
 
@@ -83,11 +85,12 @@ export class EditComponent {
     const requiredFields = ['name', ...Object.keys(this.idOptions)]; 
     const isImageFieldFilled = this.imageFile !== null && this.imageFile !== undefined;
     const isPriceFieldFilled = this.price.price !== null && this.price.price !== undefined;
+    const isDescriptionFieldFilled = this.description.description !== null && this.description.description !== undefined
 
     const areRequiredFieldsFilled = requiredFields.every(field =>
       this.newProduct[field] !== null && this.newProduct[field] !== undefined
     );
-    return areRequiredFieldsFilled && isImageFieldFilled && isPriceFieldFilled;
+    return areRequiredFieldsFilled && isImageFieldFilled && isPriceFieldFilled && isDescriptionFieldFilled;
   }
 
   getMissingFields(): string[] {

@@ -13,15 +13,19 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private authService: AuthService,
-    private router: Router) {
-
-  }
+    private router: Router) { }
 
   submitLogin() {
     this.authService.login(this.loginForm.value).subscribe({
-      next: () => this.router.navigate(['admin']),
+      next: (response) => {
+        if (response.token === 'admin') {
+          this.router.navigate(['admin']);
+        } else {
+          this.router.navigate(['store']);
+        }
+      },
       error: (err) => alert(err.message)
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -32,8 +36,10 @@ export class LoginComponent implements OnInit{
           Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
         ])
       });
-      if (this.authService.isLoggedIn()) {  // для админа
+      if (this.authService.isLoggedIn() && this.authService.isAdmin()) {  // для админа
         this.router.navigate(['admin'])
+      } else if (this.authService.isLoggedIn()) {
+        this.router.navigate(['store'])
       }
   }
 }

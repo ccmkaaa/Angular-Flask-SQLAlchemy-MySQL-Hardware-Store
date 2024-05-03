@@ -40,6 +40,8 @@
       <input type="file" (change)="onImageChange($event)" accept=".jpg" required>
       <label>Price</label>
       <input type="number" (keypress)="onKeyPress($event)" [(ngModel)]="price.price" name="price" required>
+      <label>Description</label>
+      <textarea [(ngModel)]="description.description" name="description" required></textarea>
     </div>
     <button type="submit">Add Product</button>
   </form>

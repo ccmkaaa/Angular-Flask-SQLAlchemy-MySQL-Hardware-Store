@@ -4,19 +4,25 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { AdminModule } from './components/modules/admin/admin.module';
-import { AuthGuard_ca } from './guards/auth/auth-ca.guard';
-import { AuthGuard_cd } from './guards/auth/auth-cd.guard';
+import { StoreModule } from './components/modules/store/store.module';
+import { AdminAuthGuard_ca } from './guards/auth/admin-auth-ca.guard';
+import { AdminAuthGuard_cd } from './guards/auth/admin-auth-cd.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path:'', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/store', pathMatch: 'full'},
   {
     path: 'admin',
-    canActivate: [AuthGuard_ca],
-    canDeactivate: [AuthGuard_cd],
-    loadChildren: () => import('./components/modules/admin/admin.module').then((m) => m.AdminModule) // loadChildren: () => import('./components/modules/admin/admin.module').then((m: {AdminModule:AdminModule} ) => m.AdminModule)
+    canActivate: [AdminAuthGuard_ca],
+    canDeactivate: [AdminAuthGuard_cd],
+    loadChildren: () => import('./components/modules/admin/admin.module').then((m) => m.AdminModule), 
+  },
+  { path: 'store',
+    canActivate: [AdminAuthGuard_ca],
+    canDeactivate: [AdminAuthGuard_cd], 
+    loadChildren: () => import('./components/modules/store/store.module').then((m) => m.StoreModule),
   }, 
-  {path: '**', component:NotFoundComponent}
+  { path: '**', component:NotFoundComponent}
 ];
 
 @NgModule({

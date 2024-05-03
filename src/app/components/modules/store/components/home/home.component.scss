@@ -1,0 +1,44 @@
+.sidebar {
+    color: white; /* Цвет текста */
+  }
+
+  .cats {
+    background-color: #333;
+    border-radius: 15px; /* Скругление углов */
+    margin: 15px 20px; /* Отступы слева и сверху */
+    padding: 10px;
+  }
+  
+  .product-type-list,
+  .category-list {
+    border-radius: 15px; /* Скругление углов */
+    background-color: #ffffff0c; /* Цвет фона */
+    list-style: none; /* Убираем маркеры списка */
+    padding: 15px; /* Убираем отступы внутри списка */
+    border-color: #ffffff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 15px; /* Скругление углов */
+  }
+  
+  .product-type-list li,
+  .category-list li {
+    margin-bottom: 10px; /* Отступ между элементами списка */
+    margin-left: 10px;
+    
+  }
+  
+  .product-type-list input[type="checkbox"],
+  .category-list input[type="checkbox"] {
+    margin-right: 5px; /* Отступ между чекбоксом и текстом */
+  }
+
+  .sidebar h2 {
+    padding: 20px; /* Отступы слева и сверху */
+    background: #ffffff2a;
+    border-color: #ffffff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 15px; /* Скругление углов */
+  }
+

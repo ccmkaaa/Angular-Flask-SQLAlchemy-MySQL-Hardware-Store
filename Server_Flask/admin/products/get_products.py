@@ -2,7 +2,7 @@ import mysql.connector
 from ..db.conn import db
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify, Blueprint, abort
-from alchemy.model import AllProduct, GPU, CPU, RAM, MB
+from alchemy.entities.products import AllProduct, GPU, CPU, RAM, MB
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource
 from sqlalchemy import asc, desc, inspect

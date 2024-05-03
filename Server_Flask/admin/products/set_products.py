@@ -1,7 +1,7 @@
 import mysql.connector
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify, Blueprint, abort
-from alchemy.model import AllProduct, GPU, CPU, RAM, MB, db
+from alchemy.entities.products import AllProduct, GPU, CPU, RAM, MB, db_products
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource
 from sqlalchemy import asc, desc, inspect
@@ -31,8 +31,9 @@ def set_products_show():
                 product.product_type = product_data.get("product_type")
                 product.quantity = product_data.get("quantity")
                 product.price = product_data.get("price")
+                product.description = product_data.get("description")
 
-        db.session.commit()
+        db_products.session.commit()
 
         return jsonify({"success": True, "message": "Products updated successfully"})
     except Exception as e:
