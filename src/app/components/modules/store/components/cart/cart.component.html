@@ -1,1 +1,32 @@
-<p>cart works!</p>
+<div class="content">
+  <div class="cart-container">
+    <div class="cart-header">Your Cart</div>
+    <div class="cart-items">
+      <div class="cart-item row" *ngFor="let item of products">
+        <div class="col-md-3 item-image">
+          <img [src]="item.product.imageUrl" alt="{{ item.product.name }}" class="img-fluid">
+        </div>
+        <div class="col-md-6 item-details">
+          <div class="item-name">{{ item.product.name }}</div>
+          <div class="item-description">{{ item.product.description }}</div>
+          <div class="item-price">Price: {{ item.product.price | myCurrency }}</div>
+          <div class="item-quantity">
+            <label>Quantity:</label>
+            <input type="number" [(ngModel)]="item.quantity" min="1" class="form-control" oninput="this.value = 
+            !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : 1" required (ngModelChange)="updateQuantity(item)">
+          </div>
+          <div class="item-actions">
+            <button class="btn btn-danger remove-button" (click)="removeItem(item)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-total">
+      Total: {{ getTotalPrice() | myCurrency }}
+    </div>
+    <button class="btn btn-primary buy-button">Buy</button>
+  </div>
+</div>
+
+
+  

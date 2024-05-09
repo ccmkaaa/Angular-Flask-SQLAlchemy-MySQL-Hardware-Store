@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { StoreService } from '../../services/store.service';
+import { Subscription } from 'rxjs'
+import { DialogService } from '../../services/dialog.service';
 
 interface Subcategory {
   name: string;
@@ -19,24 +22,61 @@ interface Category {
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  private searchTextSubscription!: Subscription;
+
+  constructor(private route: ActivatedRoute, private storeService: StoreService, private dialogService: DialogService) { 
+    this.searchTextSubscription = this.storeService.searchText$.subscribe(searchText => {
+      this.searchText = searchText;
+      this.onAnyChange(); // Вызываем метод при каждом изменении searchText
+    });
+  }
 
   products!: any[];
+  initialProducts!: any[];
   productTypes!: any[];
   categories!: Category[];
+
+  searchText: string = '';
   selectedCategories: Category[] = [];
   filteredProducts: any[] = [];
-  searchText: string = '';
+
   selectedProductTypes: string[] = []; 
   isProductTypeSelected: { [key: string]: boolean } = {};
   selectedValues: { [key: string]: boolean } = {}; // Object to store selected value names
 
+  products_cart!: any[];
+
+  onAnyChange() {
+    this.storeService.getSortedProductIds(
+      this.getSelectedCategories(this.categories),
+      this.searchText,
+      this.getSelectedProductTypes(this.productTypes)
+    )
+    .subscribe((data) => {
+      console.log(data)
+      const productIds  = data;
+      this.products = this.initialProducts.filter(product => productIds.includes(product.id));
+      this.products.forEach(product => {
+        this.storeService.getProductImage(product.id).subscribe(image => {
+          product.imageUrl = URL.createObjectURL(image);
+        });
+      });
+    });
+  }
+
+  show_info() {
+    console.log(this.searchText)
+    console.log(this.getSelectedProductTypes(this.productTypes))
+    console.log(this.getSelectedCategories(this.categories))
+    console.log(this.products)
+  }
+
+  getCombinedValueId(categoryName: string, subcategoryId: string, valueId: number): string {
+    return `${categoryName}-${subcategoryId}-${valueId}`;
+  }
 
   parseCategories(categories: Category[]) {
     const _categories = categories;
-
-    console.log(this.getSelectedProductTypes(this.productTypes))
-  
     for (const categoryName in _categories) {
       const category = _categories[categoryName];
       console.log(`Category: ${category.category}`);
@@ -53,52 +93,51 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getCombinedValueId(categoryName: string, subcategoryId: string, valueId: number): string {
-    return `${categoryName}-${subcategoryId}-${valueId}`;
-  }
+    getSelectedCategories(categories: Category[]) {
+      const selectedCategories: Category[] = [];
 
-  getSelectedCategories(categories: Category[]) {
-    const selectedCategories: Category[] = [];
+      for (const category of categories) {
+        const selectedSubcategories: { [key: string]: Subcategory } = {};
 
-    for (const category of categories) {
-      const selectedSubcategories: { [key: string]: Subcategory } = {};
+        for (const subcategoryName in category.subcategories) {
+          const subcategory = category.subcategories[subcategoryName];
+          const selectedValues: { id: number; name: string }[] = [];
 
-      for (const subcategoryName in category.subcategories) {
-        const subcategory = category.subcategories[subcategoryName];
-        const selectedValues: { id: number; name: string }[] = [];
+          for (const value of subcategory.values) {
+            const valueId = this.getCombinedValueId(category.category, subcategoryName, value.id);
+            if (this.selectedValues[valueId]) {
+              selectedValues.push(value);
+            }
+          }
 
-        for (const value of subcategory.values) {
-          const valueId = this.getCombinedValueId(category.category, subcategoryName, value.id);
-          if (this.selectedValues[valueId]) {
-            selectedValues.push(value);
+          if (selectedValues.length > 0) {
+            selectedSubcategories[subcategoryName] = { name: subcategory.name, values: selectedValues };
           }
         }
 
-        if (selectedValues.length > 0) {
-          selectedSubcategories[subcategoryName] = { name: subcategory.name, values: selectedValues };
+        if (Object.keys(selectedSubcategories).length > 0) {
+          selectedCategories.push({ category: category.category, subcategories: selectedSubcategories });
         }
       }
 
-      if (Object.keys(selectedSubcategories).length > 0) {
-        selectedCategories.push({ category: category.category, subcategories: selectedSubcategories });
-      }
-    }
-
-    return selectedCategories;
-}
-
-getSelectedProductTypes(productTypes: any[]) {
-  const selectedProductTypes: any[] = [];
-
-  for (const productType of productTypes) {
-      if (this.isProductTypeSelected[productType.id]) {
-          selectedProductTypes.push(productType);
-      }
+      return selectedCategories;
   }
 
-  return selectedProductTypes;
-}
+  getSelectedProductTypes(productTypes: any[]) {
+    const selectedProductTypes: any[] = [];
 
+    for (const productType of productTypes) {
+        if (this.isProductTypeSelected[productType.id]) {
+            selectedProductTypes.push(productType);
+        }
+    }
+
+    return selectedProductTypes;
+  }
+  onCheckboxChange(event: any) {
+    this.onValueChange(event);
+    this.onAnyChange();
+  }
   onValueChange(event: any) {
     const valueId = event.target.value;
     this.selectedValues[valueId] = event.target.checked;
@@ -119,6 +158,21 @@ getSelectedProductTypes(productTypes: any[]) {
     this.categories = filteredCategories;
   }
 
+  openProductInfoDialog(product: any): void {
+    this.dialogService.openProductInfoDialog(product);
+  }
+
+  loadProducts(): void {
+    this.storeService.getProducts().subscribe(products => {
+      this.products = products;
+      this.products.forEach(product => {
+        this.storeService.getProductImage(product.id).subscribe(image => {
+          product.imageUrl = URL.createObjectURL(image);
+        });
+      });
+    });
+  }
+
 
   ngOnInit() {
     // Получаем данные из резолверов
@@ -126,11 +180,14 @@ getSelectedProductTypes(productTypes: any[]) {
       this.products = data['products'];
       this.productTypes = data['product_types'];
       this.categories = data['categories'];
-      // this.filterProducts();
-      this.parseCategories(this.categories);
     });
-    console.log(this.products)
-    console.log(this.productTypes)
-    console.log(this.categories)
+    // загрузка товаров
+    this.loadProducts();
+    // подписка на поисковую строку
+    this.searchTextSubscription = this.storeService.searchText$.subscribe(searchText => {
+      this.searchText = searchText;
+    });
+    this.initialProducts = this.products;
   }
+
 }

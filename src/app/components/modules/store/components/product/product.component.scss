@@ -1,0 +1,98 @@
+.product-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* цвет затемнения */
+    z-index: 999; /* устанавливаем z-index выше, чем у диалогового окна */
+}
+
+.product-dialog-container {
+    background: white;
+    color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Убедитесь, что z-index достаточно высокий, чтобы окно оставалось поверх другого контента */
+    width: 700px; /* задайте ширину окна */
+    padding: 20px; /* добавьте отступы */
+    border-radius: 8px; /* скруглите углы */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* добавьте тень */
+}
+
+.product-details-container {
+    margin-top: 10px;
+}
+.product-image-container {
+    margin-top: 10px;
+}
+
+.product-image {
+    max-width: 100%; /* Максимальная ширина изображения будет равна ширине контейнера */
+    max-height: 500px; /* Максимальная высота изображения составляет 200 пикселей */
+    border-radius: 10px; 
+    border: 1px solid #333333;
+    padding: 5px;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
+.product-image img {
+    border-radius: 10px; 
+}
+
+.close-button {
+    width: 50px;
+    margin-left: 600px;
+    display: flex;
+    color: white !important; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+    background-color: #007bff98;
+}
+
+.close-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Увеличение тени при наведении */
+}
+
+
+.product-name {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 17px;
+    font-weight: 600;
+}
+// .product-info-container {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     height: 100%;
+// }
+
+// .product-image-container {
+//     flex: 1; /* Занимает всю доступную ширину */
+//     margin-right: 20px; /* Отступ между фотографией и остальной информацией */
+// }
+
+// .product-details-container {
+//     flex: 2; /* Занимает две единицы ширины, в два раза больше, чем фотография */
+// }
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out; /* задаем анимацию fadeIn с длительностью 0.3 секунды и ease-out */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* начальная прозрачность - 0 */
+    }
+    to {
+        opacity: 1; /* конечная прозрачность - 1 */
+    }
+}

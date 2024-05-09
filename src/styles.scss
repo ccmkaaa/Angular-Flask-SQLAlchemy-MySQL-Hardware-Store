@@ -53,3 +53,19 @@
 .active {
     background: rgba(59, 70, 138, 0.35);
 }
+
+.mat-mdc-snack-bar-container {
+    position: fixed;
+    top: 0;
+    z-index: 1000; /* Убедитесь, что значение z-index достаточно высокое */
+    --mat-mdc-snack-bar-button-color: #ffffff;
+    --mdc-snackbar-supporting-text-color: #ffffff;
+  
+    &.app-notification-error {
+      --mdc-snackbar-container-color: #2f53f2;
+    }
+  
+    &.app-notification-success {
+      --mdc-snackbar-container-color: #43a446;
+    }
+  }

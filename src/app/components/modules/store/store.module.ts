@@ -5,7 +5,6 @@ import { StoreRoutingModule } from './store-routing.module';
 import { StoreDashboardComponent } from './components/store-dashboard/store-dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProductsComponent } from './components/products/products.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CartComponent } from './components/cart/cart.component';
 import { MatCardModule } from '@angular/material/card';
@@ -18,7 +17,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list'
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge'; 
+
 import { FormsModule } from '@angular/forms';
+import { ProductComponent } from './components/product/product.component';
+import { MyCurrencyPipe } from './pipe/my-currency.pipe';
 
 
 @NgModule({
@@ -26,9 +31,10 @@ import { FormsModule } from '@angular/forms';
     StoreDashboardComponent,
     HeaderComponent,
     HomeComponent,
-    ProductsComponent,
     CategoriesComponent,
-    CartComponent
+    CartComponent,
+    ProductComponent,
+    MyCurrencyPipe
   ],
   imports: [
     CommonModule,
@@ -43,7 +49,10 @@ import { FormsModule } from '@angular/forms';
     MatExpansionModule,
     MatListModule,
     MatCheckboxModule,
-    FormsModule
+    MatDialogModule,
+    MatBadgeModule,
+    MatFormFieldModule,
+    FormsModule,
   ]
 })
 export class StoreModule { }

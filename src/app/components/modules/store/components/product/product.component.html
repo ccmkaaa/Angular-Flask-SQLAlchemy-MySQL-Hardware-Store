@@ -1,0 +1,33 @@
+<div class="product-dialog-overlay" (click)="closeDialog()"></div>
+<div class="product-dialog-container fade-in">
+    <div class="row">
+        <button mat-button class="close-button" (click)="closeDialog()">Close</button>
+        <div class="col-md-6">
+            <div class="product-image-container">
+                <!-- Здесь будет изображение товара -->
+                <img class="product-image" [src]="imageUrl" alt="{{ product.name }}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="product-details-container">
+                <!-- Здесь будет остальная информация о товаре -->
+                <p class="product-description">Description: {{ product.description }}</p>
+                <p class="product-name">{{ product.name }}</p>
+                <p class="product-price">Price: {{ product.price }} ({{ product.price * quantity}})</p>
+                <!-- Добавьте другие детали товара, если необходимо -->
+
+                <div class="input-group mb-3">
+                    <label for="quantity" class="input-group-text">Quantity:</label>
+                    <input [(ngModel)]="quantity" type="number" class="form-control" id="quantity" name="quantity" required min="1" value="1" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : 1" required>
+                </div>
+
+                <button class="btn btn-primary" type="submit" (click)="addToCart()">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+

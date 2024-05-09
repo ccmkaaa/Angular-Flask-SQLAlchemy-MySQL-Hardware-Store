@@ -19,9 +19,7 @@ const routes: Routes = [
         product_types: ProductTypesResolver,
         categories: CategoriesResolver,
       }},
-      {path: 'cart', component: CartComponent, resolve: {
-
-      }},
+      {path: 'cart', component: CartComponent},
     ]
   }
 ];

@@ -4,9 +4,11 @@
       style="background-color: rgba(0, 0, 0, 0.2)"
     >
       <div class="text-center">Menu</div>
-      <div class="search-bar-container">
-        <input type="text" class="form-control search-bar wide-input" [(ngModel)]="searchText" placeholder="Search...">
+      <div class="search-bar-container" *ngIf="isHomePage()">
+        <input type="text" class="form-control search-bar wide-input" [ngModel]="searchText" (ngModelChange)="onSearchTextChange($event)" placeholder="Search...">
       </div>
+      
+      
       <nav class="navbar">
         <ul class="navbar nav ml-auto">
           <li>
@@ -22,7 +24,8 @@
               routerLinkActive="active"
               class="text-info text-decoration-none ms-3 p-1"
               routerLink="./cart"
-            >Cart</a
+            >Cart <span *ngIf="cartLength !== 0" matBadge="({{ cartLength }})" matBadgeColor="accent" matBadgeSize="small"> </span>
+            </a
             >
           </li>
           <button *ngIf="isLoggedIn()" type="button" class="btn btn-info ms-3" (click)="logout()">
