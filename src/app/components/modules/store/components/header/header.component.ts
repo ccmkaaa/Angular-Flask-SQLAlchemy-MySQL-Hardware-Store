@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     this.storeService.setSearchText(newValue);
   }
 
-  isHomePage() {
+  isHomePage() : boolean {
     return this.router.url.includes('/store/home');
   }
 

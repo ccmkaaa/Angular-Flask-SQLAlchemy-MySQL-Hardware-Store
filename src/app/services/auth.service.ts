@@ -57,6 +57,19 @@ export class AuthService {
        );
    }
 
+   register(userInfo: {email: string, password: string}): Observable<any> {
+    const registerData = {
+      email: userInfo.email,
+      password: userInfo.password
+    };
+    return this.http.post<any>(`${this.apiUrl}/register`, registerData).pipe(
+      catchError(error => {
+        console.error('Registration failed', error);
+        return throwError('Failed Registration');
+      })
+    );
+  }
+
    logout() {
       this.router.navigate(['login'])
    }

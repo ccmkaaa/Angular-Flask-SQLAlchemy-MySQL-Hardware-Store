@@ -1,6 +1,7 @@
 <div class="content">
   <div class="cart-container">
     <div class="cart-header">Your Cart</div>
+    <div *ngIf="products.length <=0" class="no-product"><h4>Add products in your cart</h4></div>
     <div class="cart-items">
       <div class="cart-item row" *ngFor="let item of products">
         <div class="col-md-3 item-image">
@@ -24,7 +25,7 @@
     <div class="cart-total">
       Total: {{ getTotalPrice() | myCurrency }}
     </div>
-    <button class="btn btn-primary buy-button">Buy</button>
+    <button class="btn btn-primary buy-button" (click)="openCartInfoDialog(getTotalPrice())">Buy</button>
   </div>
 </div>
 

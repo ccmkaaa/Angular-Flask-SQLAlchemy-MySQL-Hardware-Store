@@ -7,6 +7,31 @@ from alchemy.entities.users import db_users as db, AccountAdmin, Account
 auth_bp = Blueprint("auth", __name__)
 
 
+# @auth_bp.route("/login", methods=["POST"])
+# def login():
+#     data = request.json
+
+#     # Получение данных пользователя из запроса
+#     user_login = data.get("email")
+#     user_password = data.get("password")
+
+#     # Поиск пользователя в базе данных
+#     user = Account.query.filter_by(login=user_login, password=user_password).first()
+
+#     if user:
+#         # Пользователь найден, проверяем, является ли он администратором
+#         admin_info = AccountAdmin.query.filter_by(id=user.id).first()
+
+
+#         if admin_info and admin_info.isadmin:
+#             # Если пользователь администратор, возвращаем "admin"
+#             return jsonify({"token": "admin"}), 200
+#         else:
+#             # Если пользователь не администратор, возвращаем его логин
+#             return jsonify({"token": user.login}), 200
+#     else:
+#         # Если пользователь не найден или пароль не совпадает, возвращаем ошибку
+#         return jsonify({"error": "Failed Login"}), 401
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.json
@@ -16,18 +41,23 @@ def login():
     user_password = data.get("password")
 
     # Поиск пользователя в базе данных
-    user = Account.query.filter_by(login=user_login, password=user_password).first()
+    user = Account.query.filter_by(login=user_login).first()
 
     if user:
-        # Пользователь найден, проверяем, является ли он администратором
-        admin_info = AccountAdmin.query.filter_by(id=user.id).first()
+        # Если пользователь найден, проверяем хэш пароля
+        if check_password_hash(user.password, user_password):
+            # Пользователь аутентифицирован, проверяем, является ли он администратором
+            admin_info = AccountAdmin.query.filter_by(id=user.id).first()
 
-        if admin_info and admin_info.isadmin:
-            # Если пользователь администратор, возвращаем "admin"
-            return jsonify({"token": "admin"}), 200
+            if admin_info and admin_info.isadmin:
+                # Если пользователь администратор, возвращаем "admin"
+                return jsonify({"token": "admin"}), 200
+            else:
+                # Если пользователь не администратор, возвращаем его логин
+                return jsonify({"token": user.login}), 200
         else:
-            # Если пользователь не администратор, возвращаем его логин
-            return jsonify({"token": user.login}), 200
+            # Пароль не совпадает, возвращаем ошибку
+            return jsonify({"error": "Invalid credentials"}), 401
     else:
-        # Если пользователь не найден или пароль не совпадает, возвращаем ошибку
-        return jsonify({"error": "Failed Login"}), 401
+        # Если пользователь не найден, возвращаем ошибку
+        return jsonify({"error": "User not found"}), 404

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { AdminModule } from './components/modules/admin/admin.module';
@@ -10,6 +11,7 @@ import { AdminAuthGuard_cd } from './guards/auth/admin-auth-cd.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: 'signup', component: RegisterComponent},
   {path: '', redirectTo: '/store', pathMatch: 'full'},
   {
     path: 'admin',

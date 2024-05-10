@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductComponent } from '../components/product/product.component';
+import { PaymentComponent } from '../components/payment/payment.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,15 @@ export class DialogService {
     const dialogRef = this.dialog.open(ProductComponent, {
       width: 'auto',
       data: { product: product }
+    });
+  }
+
+  openCartInfoDialog(total_amount: number): void {
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      width: 'auto',
+      data: {
+        total_amount: total_amount
+      }
     });
   }
 

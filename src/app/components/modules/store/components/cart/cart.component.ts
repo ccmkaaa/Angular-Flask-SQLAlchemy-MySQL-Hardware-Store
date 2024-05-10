@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { StoreService } from '../../services/store.service';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +8,13 @@ import { StoreService } from '../../services/store.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
-  constructor(private storeService: StoreService) {}
+  constructor(private storeService: StoreService, private dialogService: DialogService) {}
 
   products!: any[];
+
+  openCartInfoDialog(product: any): void {
+    this.dialogService.openCartInfoDialog(product);
+  }
 
   parseCart() {
     const cartData = localStorage.getItem('cart');
@@ -40,13 +45,12 @@ export class CartComponent {
   updateQuantity(item: any) {
     this.saveCartToLocalStorage();
   }
-  
+
   saveCartToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(this.products));
   }
 
   ngOnInit() {
     this.parseCart()
-    console.log(this.products)
   }
 }

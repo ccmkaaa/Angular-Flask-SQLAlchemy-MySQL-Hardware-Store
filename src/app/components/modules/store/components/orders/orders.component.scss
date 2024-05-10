@@ -1,0 +1,21 @@
+.container {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.img-fluid {
+    height: 180px;
+    padding: 30px;
+}
+
+.card-product {
+    border: 1px solid black;
+}
+
+.no-orders {
+    color: white;
+    display: flex;
+    justify-content: center;
+}

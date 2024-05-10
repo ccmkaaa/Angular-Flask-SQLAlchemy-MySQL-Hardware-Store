@@ -28,6 +28,15 @@
             </a
             >
           </li>
+          <li>
+            <a
+              routerLinkActive="active"
+              class="text-info text-decoration-none ms-3 p-1"
+              routerLink="./orders"
+            >Orders
+            </a
+            >
+          </li>
           <button *ngIf="isLoggedIn()" type="button" class="btn btn-info ms-3" (click)="logout()">
             Logout
           </button>

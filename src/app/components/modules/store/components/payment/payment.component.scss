@@ -1,0 +1,56 @@
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dialog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); // Полупрозрачный фон
+  }
+  
+  .dialog-content {
+    position: relative;
+    z-index: 1; // Помещаем окно над оверлеем
+    background-color: white; // Цвет фона окна
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); // Тень
+    border-radius: 10px; // Скругленные углы
+    padding: 20px; // Отступы внутри окна
+    margin-top: 20px;
+  }
+
+  .card-field {
+    padding: 20px;
+    
+  }
+
+  .label-info {
+    min-height: 50px;
+  }
+
+  .custom-button {
+    background-color: #007bff; /* Сине-голубой цвет */
+    color: white; /* Белый цвет текста */
+    border: none; /* Убираем границу */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    font-size: 16px; /* Размер шрифта */
+    border-radius: 5px; /* Скругленные углы */
+    cursor: pointer; /* Изменяем указатель при наведении */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3; /* Изменяем цвет при наведении */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  

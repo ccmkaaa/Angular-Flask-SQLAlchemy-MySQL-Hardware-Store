@@ -92,7 +92,7 @@ def shop_get_categories():
 def get_sorted_product_ids():
     if request.method == "OPTIONS":
         return jsonify({"status": "ok"}), 200
-    # Получите данные из запроса
+
     data = request.get_json()
     categories = data["categoriesDict"]
     search_text = data["searchText"]
