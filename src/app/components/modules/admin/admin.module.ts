@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 import { AdminRoutingModule } from './admin-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -36,7 +38,8 @@ import { PriceFormatPipe } from './pipe/price-format.pipe';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    NgApexchartsModule
   ]
 })
 export class AdminModule { }
