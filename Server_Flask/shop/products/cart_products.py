@@ -30,14 +30,6 @@ def shop_set_order():
     if not products or products == "":
         return jsonify({"message": "No products in the order"}), 400
 
-    # Преобразование строковых элементов в словари
-    # for i, item in enumerate(products):
-    #     if isinstance(item, str):
-    #         try:
-    #             products[i] = json.loads(item)
-    #         except json.JSONDecodeError as e:
-    #             return jsonify({"error": str(e)}), 400
-
     # Проверка, достаточно ли товаров в наличии для оформления заказа
     for item in products:
         product_info = item.get("product")

@@ -32,11 +32,6 @@ export class AuthService {
     }
 
    login(userInfo: {email: string, password: string}): Observable<{ token: string }> {
-      // if(userInfo.email === "admin@gmail.com" && userInfo.password === 'admin123') {
-      //   this.setToken('abcdefg123')
-      //   return of(true);
-      // }
-      // return throwError(()=>new Error('Failed Login'))
       const loginData = {
          email: userInfo.email,
          password: userInfo.password

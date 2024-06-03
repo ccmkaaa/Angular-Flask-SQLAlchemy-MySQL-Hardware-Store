@@ -53,7 +53,6 @@ export class ShowComponent {
     }
   }
   isEditable(column: string): boolean {
-    // здесь определите условия, при которых столбец должен быть редактируемым
     return column === 'price' || column === 'quantity' || column === 'description';
   }
   

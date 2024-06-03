@@ -82,7 +82,6 @@ export class HomeComponent implements OnInit {
 
       const series = values.map(value => parseFloat(value as string));
 
-      // Update chartOptions with the extracted keys and values
       this.chartOptions1 = {
         series: series,
         chart: {
@@ -109,13 +108,12 @@ export class HomeComponent implements OnInit {
 
   updateChartOptions2(): void {
     if (this.total_amount_remaining_by_product_type) {
-      // Extract keys and values from the data object
+ 
       const keys = Object.keys(this.total_amount_remaining_by_product_type);
       const values = Object.values(this.total_amount_remaining_by_product_type);
 
       const series = values.map(value => parseFloat(value as string));
 
-      // Update chartOptions with the extracted keys and values
       this.chartOptions2 = {
         series: series,
         chart: {

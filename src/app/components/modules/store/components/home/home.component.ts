@@ -154,7 +154,7 @@ export class HomeComponent implements OnInit {
         filteredCategories.push(category);
       }
     }
-    // Update your categories with the filtered list (assuming you have a way to display filtered categories)
+
     this.categories = filteredCategories;
   }
 
